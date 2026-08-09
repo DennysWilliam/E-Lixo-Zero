@@ -1,0 +1,9 @@
+E-Lixo_zero
+
+- Adicionar as pastas dos apêndices no repositório do projeto
+- Adicionar o Leonardo como integrante da equipe
+- Sumário remover o "negrito" da seção Identificação do entrevistado
+-  Ajustar o conteúdo da entrega com Introdução e objetivos ( Seguir o modelo de documento proposto)
+-  Sugiro adicionar a entrevista como anexo
+- Texto deve ser justificado
+-  Adicionar e atualizar o cronograma
