@@ -1,0 +1,80 @@
+<div class="page-header">
+  <div>
+    <h1>Olá, {{ usuario?.nome }}! 👋</h1>
+    <p>Que bom ter você por aqui.</p>
+  </div>
+
+  <div class="user">
+    <span>🔔</span>
+    <strong>{{ usuario?.nome }}</strong>
+  </div>
+</div>
+
+<section class="stats">
+  <div>
+    <strong>{{ totalAgendadas() }}</strong>
+    <span>Coletas Agendadas</span>
+  </div>
+
+  <div>
+    <strong>{{ totalAndamento() }}</strong>
+    <span>Em Andamento</span>
+  </div>
+
+  <div>
+    <strong>{{ totalConcluidas() }}</strong>
+    <span>Concluídas</span>
+  </div>
+
+  <div>
+    <strong>{{ totalResiduos() }} itens</strong>
+    <span>Resíduos Registrados</span>
+  </div>
+</section>
+
+<h2>Ações rápidas</h2>
+
+<section class="actions">
+  <a routerLink="/solicitar-coleta" class="action-card">
+    <span>🗓️</span>
+    <div>
+      <strong>Solicitar Coleta</strong>
+      <p>Agende uma nova coleta</p>
+    </div>
+  </a>
+
+  <a routerLink="/pontos-coleta" class="action-card">
+    <span>📍</span>
+    <div>
+      <strong>Ver Pontos de Coleta</strong>
+      <p>Encontre o mais próximo</p>
+    </div>
+  </a>
+
+  <a routerLink="/minhas-coletas" class="action-card">
+    <span>🚛</span>
+    <div>
+      <strong>Minhas Coletas</strong>
+      <p>Acompanhe seus pedidos</p>
+    </div>
+  </a>
+
+  <a routerLink="/residuos" class="action-card">
+    <span>♻️</span>
+    <div>
+      <strong>Consultar Resíduos</strong>
+      <p>Saiba como descartar</p>
+    </div>
+  </a>
+</section>
+
+<section class="tip">
+  <div>
+    <h3>Dica sustentável 🌱</h3>
+    <p>Pequenas atitudes fazem uma grande diferença!</p>
+  </div>
+
+  <span>
+    <img src="/images/home.png" alt="">
+  </span>
+</section>

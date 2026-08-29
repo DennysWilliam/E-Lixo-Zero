@@ -1,0 +1,51 @@
+.sidebar {
+  background: linear-gradient(180deg, #0f5a3b 0%, #10683e 100%);
+  color: white;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 36px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+nav a {
+  color: white;
+  padding: 14px 18px;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+nav a.active {
+  background: #2f9b57;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.logout {
+  border: 0;
+  background: transparent;
+  color: white;
+  text-align: left;
+  padding: 14px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

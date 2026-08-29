@@ -1,0 +1,67 @@
+<div class="auth-header">
+  <a class="back-link" routerLink="/">
+    ← Voltar para a página inicial
+  </a>
+</div>
+
+<section class="auth-card">
+  <div class="auth-visual">
+    <h2>♻ E-LIXO ZERO</h2>
+
+    <h3>Bem-vindo de volta!</h3>
+
+    <p>
+      Faça login para acompanhar suas coletas, notificações e histórico de descarte.
+    </p>
+
+    <img
+      src="images/login.png"
+      alt="Ilustração de login"
+    />
+  </div>
+
+  <div class="auth-form">
+    <h1>Entrar</h1>
+
+    <label for="email">E-mail</label>
+
+    <input
+      id="email"
+      class="form-input"
+      type="email"
+      placeholder="seu@email.com"
+      [(ngModel)]="email"
+    />
+
+    <label for="senha">Senha</label>
+
+    <input
+      id="senha"
+      class="form-input"
+      type="password"
+      placeholder="Digite sua senha"
+      [(ngModel)]="senha"
+    />
+
+    <p class="erro" *ngIf="erro">
+      {{ erro }}
+    </p>
+
+    <button
+      class="btn btn-primary full btn-space"
+      type="button"
+      (click)="entrar()">
+
+      Entrar
+
+    </button>
+
+    <p class="switch">
+      Ainda não possui uma conta?
+
+      <a routerLink="/cadastro">
+        Cadastre-se
+      </a>
+    </p>
+  </div>
+</section>

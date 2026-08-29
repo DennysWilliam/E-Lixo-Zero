@@ -1,0 +1,53 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo label {
+  font-weight: 600;
+}
+
+.campo input,
+.campo select {
+  height: 52px;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  padding: 0 16px;
+  font-size: 16px;
+}
+
+.btn-primary {
+  margin-top: 12px;
+  height: 54px;
+  border: none;
+  border-radius: 10px;
+  background: #178c3b;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.acoes {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}

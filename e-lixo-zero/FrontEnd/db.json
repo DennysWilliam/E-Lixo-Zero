@@ -1,0 +1,193 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "João Silva",
+      "email": "joao@gmail.com",
+      "senha": "123456",
+      "logradouro": "Rua das Flores",
+      "numero": "123",
+      "bairro": "Centro",
+      "cidade": "Santa Rita do Sapucaí"
+    },
+    {
+      "nome": "Dennys",
+      "email": "dennys@gmail.com",
+      "senha": "1234",
+      "logradouro": "Rua 20",
+      "numero": "10",
+      "bairro": "centro",
+      "cidade": "Santa Rita do Sapucaí",
+      "id": "1VMfcB9MqnU"
+    },
+    {
+      "nome": "Leo",
+      "email": "leo@gmail.com",
+      "senha": "123",
+      "logradouro": "rua das estrelas",
+      "numero": "123",
+      "bairro": "sao jose",
+      "cidade": "Santa Rita do Sapucaí",
+      "id": "8iDaEyPDQ4w"
+    }
+  ],
+  "pontosColeta": [
+    {
+      "id": "1",
+      "nome": "Ecoponto Centro",
+      "endereco": "Rua Coronel Antônio Moreira, 150 - Centro",
+      "horario": "08:00 às 17:00",
+      "telefone": "(35) 3637-0001",
+      "residuos": [
+        "Celulares",
+        "Computadores",
+        "Cabos e Carregadores"
+      ]
+    },
+    {
+      "id": "2",
+      "nome": "Coleta Verde",
+      "endereco": "Av. Sinhá Moreira, 420 - Centro",
+      "horario": "09:00 às 18:00",
+      "telefone": "(35) 3637-0002",
+      "residuos": [
+        "Pilhas e Baterias",
+        "Monitores",
+        "Impressoras"
+      ]
+    },
+    {
+      "id": "3",
+      "nome": "Recicla Tech",
+      "endereco": "Rua José Ferreira, 85 - Família Andrade",
+      "horario": "08:00 às 16:00",
+      "telefone": "(35) 3637-0003",
+      "residuos": [
+        "Teclados",
+        "Mouse",
+        "Cabos e Carregadores"
+      ]
+    }
+  ],
+  "coletas": [
+    {
+      "id": "1",
+      "residuo": "Computadores",
+      "quantidade": 1,
+      "logradouro": "Rua das Flores",
+      "numero": "123",
+      "bairro": "Centro",
+      "cidade": "Santa Rita do Sapucaí",
+      "data": "2026-06-25",
+      "periodo": "Manhã",
+      "status": "Agendada"
+    },
+    {
+      "id": "2",
+      "residuo": "Monitores",
+      "quantidade": 2,
+      "logradouro": "Avenida Brasil",
+      "numero": "456",
+      "bairro": "Jardim Verde",
+      "cidade": "Santa Rita do Sapucaí",
+      "data": "2026-06-20",
+      "periodo": "Tarde",
+      "status": "Em Andamento"
+    },
+    {
+      "id": "3",
+      "residuo": "Celulares",
+      "quantidade": 5,
+      "logradouro": "Rua das Nações",
+      "numero": "789",
+      "bairro": "Centro",
+      "cidade": "Santa Rita do Sapucaí",
+      "data": "2026-06-15",
+      "periodo": "Manhã",
+      "status": "Concluída"
+    },
+    {
+      "residuo": "Celulares",
+      "quantidade": 1,
+      "logradouro": "rua joao de barro",
+      "numero": "10",
+      "bairro": "centro",
+      "cidade": "Santa Rita do Sapucaí",
+      "data": "2026-06-19",
+      "periodo": "Manhã",
+      "status": "Agendada",
+      "id": "MZn9xaXhLhY"
+    }
+  ],
+  "residuos": [
+    {
+      "id": "1",
+      "nome": "Celulares",
+      "categoria": "Eletrônicos Portáteis",
+      "descricao": "Celulares, tablets e acessórios."
+    },
+    {
+      "id": "2",
+      "nome": "Computadores",
+      "categoria": "Informática",
+      "descricao": "Desktops, notebooks e periféricos."
+    },
+    {
+      "id": "3",
+      "nome": "Monitores",
+      "categoria": "Vídeo",
+      "descricao": "Monitores e televisores."
+    },
+    {
+      "id": "4",
+      "nome": "Pilhas e Baterias",
+      "categoria": "Energia",
+      "descricao": "Pilhas comuns, baterias recarregáveis e baterias de notebook."
+    },
+    {
+      "id": "5",
+      "nome": "Cabos e Carregadores",
+      "categoria": "Acessórios",
+      "descricao": "Cabos USB, carregadores, fontes e adaptadores."
+    },
+    {
+      "id": "6",
+      "nome": "Impressoras",
+      "categoria": "Periféricos",
+      "descricao": "Impressoras jato de tinta e laser."
+    },
+    {
+      "id": "7",
+      "nome": "Teclados",
+      "categoria": "Periféricos",
+      "descricao": "Teclados com fio e sem fio."
+    },
+    {
+      "id": "8",
+      "nome": "Mouse",
+      "categoria": "Periféricos",
+      "descricao": "Mouse óptico, gamer e sem fio."
+    }
+  ],
+  "notificacoes": [
+    {
+      "id": "1",
+      "titulo": "Coleta confirmada",
+      "mensagem": "Sua coleta foi agendada para 25/06/2026 no período da manhã.",
+      "data": "2026-06-16"
+    },
+    {
+      "id": "2",
+      "titulo": "Coleta em andamento",
+      "mensagem": "A equipe está a caminho para realizar sua coleta.",
+      "data": "2026-06-20"
+    },
+    {
+      "id": "3",
+      "titulo": "Coleta concluída",
+      "mensagem": "Sua coleta foi realizada com sucesso. Obrigado por contribuir com o meio ambiente.",
+      "data": "2026-06-15"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

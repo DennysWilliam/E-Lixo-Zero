@@ -1,0 +1,160 @@
+.auth-card {
+  width: min(1120px, calc(100% - 48px));
+  margin: 48px auto;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 44px;
+}
+
+.auth-visual {
+  background: #f4f7f2;
+  border-radius: 14px;
+  padding: 48px;
+  text-align: center;
+}
+
+.auth-visual h2 {
+  color: #0f7f36;
+  font-size: 30px;
+}
+
+.auth-visual h3 {
+  font-size: 28px;
+  margin-top: 32px;
+}
+
+.auth-visual p {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.auth-visual img {
+  width: 100%;
+  max-width: 360px;
+  margin-top: 20px;
+}
+
+.auth-form {
+  padding: 48px 24px;
+}
+
+.auth-form h1 {
+  font-size: 32px;
+  margin-bottom: 36px;
+}
+
+.auth-form label {
+  display: block;
+  margin: 22px 0 10px;
+  font-size: 18px;
+}
+
+.form-input {
+  width: 100%;
+  height: 56px;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  padding: 0 16px;
+  font-size: 18px;
+}
+
+.form-row {
+  margin: 26px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-row a,
+.switch a {
+  color: #0f7f36;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.check {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  margin: 0 !important;
+}
+
+.check input {
+  width: 22px;
+  height: 22px;
+}
+
+.full {
+  width: 100%;
+  height: 58px;
+  font-size: 18px;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 18px;
+}
+
+@media (max-width: 850px) {
+  .auth-card {
+    width: 100%;
+    margin: 0;
+    min-height: 100vh;
+    border-radius: 0;
+    grid-template-columns: 1fr;
+  }
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 24px;
+
+  color: #178c3b;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.back-link:hover {
+  color: #126f2f;
+}
+
+.auth-header {
+  width: min(1120px, calc(100% - 48px));
+  margin: 32px auto 0;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #178c3b;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.back-link:hover {
+  color: #126f2f;
+}
+
+.erro {
+  color: #dc2626;
+  font-weight: 600;
+  margin-top: 14px;
+}
+
+.btn-space{
+  margin-top: 14px;
+}
