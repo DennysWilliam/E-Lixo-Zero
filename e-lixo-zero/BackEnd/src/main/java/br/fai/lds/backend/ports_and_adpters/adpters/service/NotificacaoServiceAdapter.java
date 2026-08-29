@@ -1,14 +1,12 @@
-package br.fai.lds.backend.services;
+package br.fai.lds.backend.ports_and_adpters.adpters.service;
 
 import br.fai.lds.backend.dto.NotificacaoDTO;
 import br.fai.lds.backend.entities.Notificacao;
-import br.fai.lds.backend.entities.Usuario;
-import br.fai.lds.backend.repositories.NotificacaoRepository;
-import br.fai.lds.backend.repositories.UsuarioRepository;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.NotificacaoRepository;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

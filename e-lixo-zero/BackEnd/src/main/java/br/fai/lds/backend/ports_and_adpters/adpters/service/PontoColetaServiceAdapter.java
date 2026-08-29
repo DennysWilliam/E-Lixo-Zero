@@ -1,8 +1,8 @@
-package br.fai.lds.backend.services;
+package br.fai.lds.backend.ports_and_adpters.adpters.service;
 
 import br.fai.lds.backend.dto.PontoColetaDTO;
 import br.fai.lds.backend.entities.PontoColeta;
-import br.fai.lds.backend.repositories.PontoColetaRepository;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.PontoColetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package br.fai.lds.backend.services;
+package br.fai.lds.backend.ports_and_adpters.adpters.service;
 
 import br.fai.lds.backend.dto.ResiduoDTO;
 import br.fai.lds.backend.entities.TipoResiduo;
-import br.fai.lds.backend.repositories.TipoResiduoRepository;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.TipoResiduoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

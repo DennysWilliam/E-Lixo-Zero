@@ -1,16 +1,15 @@
-package br.fai.lds.backend.services;
+package br.fai.lds.backend.ports_and_adpters.adpters.service;
 
 import br.fai.lds.backend.dto.ColetaDTO;
 import br.fai.lds.backend.entities.SolicitacaoColeta;
 import br.fai.lds.backend.entities.Usuario;
 import br.fai.lds.backend.entities.TipoResiduo;
-import br.fai.lds.backend.repositories.SolicitacaoColetaRepository;
-import br.fai.lds.backend.repositories.UsuarioRepository;
-import br.fai.lds.backend.repositories.TipoResiduoRepository;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.SolicitacaoColetaRepository;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.UsuarioRepository;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.TipoResiduoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

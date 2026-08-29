@@ -1,8 +1,8 @@
-package br.fai.lds.backend.services;
+package br.fai.lds.backend.ports_and_adpters.adpters.service;
 
 import br.fai.lds.backend.dto.UsuarioDTO;
 import br.fai.lds.backend.entities.Usuario;
-import br.fai.lds.backend.repositories.UsuarioRepository;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
