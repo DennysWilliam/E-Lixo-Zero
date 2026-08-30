@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class SolicitacaoColetaService {
+public class SolicitacaoColetaServiceAdapter {
     
     @Autowired
     private SolicitacaoColetaRepository solicitacaoColetaRepository;

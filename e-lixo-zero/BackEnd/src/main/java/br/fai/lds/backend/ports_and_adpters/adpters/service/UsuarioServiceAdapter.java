@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UsuarioService {
+public class UsuarioServiceAdapter {
     
     @Autowired
     private UsuarioRepository usuarioRepository;

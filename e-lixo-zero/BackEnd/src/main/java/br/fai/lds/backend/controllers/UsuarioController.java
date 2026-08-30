@@ -2,7 +2,7 @@ package br.fai.lds.backend.controllers;
 
 import br.fai.lds.backend.dto.UsuarioDTO;
 import br.fai.lds.backend.entities.Usuario;
-import br.fai.lds.backend.services.UsuarioService;
+import br.fai.lds.backend.ports_and_adpters.adpters.service.UsuarioServiceAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,24 +16,24 @@ import java.util.List;
 public class UsuarioController {
     
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioServiceAdapter usuarioServiceAdapter;
     
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> listarTodos() {
-        List<UsuarioDTO> usuarios = usuarioService.listarTodos();
+        List<UsuarioDTO> usuarios = usuarioServiceAdapter.listarTodos();
         return ResponseEntity.ok(usuarios);
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTO> buscarPorId(@PathVariable Long id) {
-        return usuarioService.buscarPorId(id)
+        return usuarioServiceAdapter.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
     
     @GetMapping("/email/{email}")
     public ResponseEntity<UsuarioDTO> buscarPorEmail(@PathVariable String email) {
-        return usuarioService.buscarPorEmail(email)
+        return usuarioServiceAdapter.buscarPorEmail(email)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -41,7 +41,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody Usuario usuario) {
         try {
-            UsuarioDTO criado = usuarioService.criar(usuario);
+            UsuarioDTO criado = usuarioServiceAdapter.criar(usuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(criado);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -51,7 +51,7 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
         try {
-            UsuarioDTO atualizado = usuarioService.atualizar(id, usuario);
+            UsuarioDTO atualizado = usuarioServiceAdapter.atualizar(id, usuario);
             return ResponseEntity.ok(atualizado);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -61,7 +61,7 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
         try {
-            usuarioService.deletar(id);
+            usuarioServiceAdapter.deletar(id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -73,11 +73,11 @@ public class UsuarioController {
         System.out.println("Tentativa de login - Email: " + loginRequest.getEmail());
         System.out.println("Tentativa de login - Senha: " + loginRequest.getSenha());
         
-        boolean autenticado = usuarioService.autenticar(loginRequest.getEmail(), loginRequest.getSenha());
+        boolean autenticado = usuarioServiceAdapter.autenticar(loginRequest.getEmail(), loginRequest.getSenha());
         System.out.println("Resultado da autenticação: " + autenticado);
         
         if (autenticado) {
-            return usuarioService.buscarPorEmail(loginRequest.getEmail())
+            return usuarioServiceAdapter.buscarPorEmail(loginRequest.getEmail())
                     .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
         }

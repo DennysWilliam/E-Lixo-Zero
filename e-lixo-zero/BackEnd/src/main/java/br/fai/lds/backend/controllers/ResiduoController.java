@@ -2,7 +2,7 @@ package br.fai.lds.backend.controllers;
 
 import br.fai.lds.backend.dto.ResiduoDTO;
 import br.fai.lds.backend.entities.TipoResiduo;
-import br.fai.lds.backend.services.TipoResiduoService;
+import br.fai.lds.backend.ports_and_adpters.adpters.service.TipoResiduoServiceAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ResiduoController {
     
     @Autowired
-    private TipoResiduoService residuoService;
+    private TipoResiduoServiceAdapter residuoService;
     
     @GetMapping
     public ResponseEntity<List<ResiduoDTO>> listarTodos() {

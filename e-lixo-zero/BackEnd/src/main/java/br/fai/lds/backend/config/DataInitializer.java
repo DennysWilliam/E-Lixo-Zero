@@ -1,7 +1,7 @@
 package br.fai.lds.backend.config;
 
 import br.fai.lds.backend.entities.*;
-import br.fai.lds.backend.repositories.*;
+import br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;

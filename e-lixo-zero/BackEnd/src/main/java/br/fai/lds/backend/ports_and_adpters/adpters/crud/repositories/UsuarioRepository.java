@@ -1,4 +1,4 @@
-package br.fai.lds.backend.repositories;
+package br.fai.lds.backend.ports_and_adpters.adpters.crud.repositories;
 
 import br.fai.lds.backend.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

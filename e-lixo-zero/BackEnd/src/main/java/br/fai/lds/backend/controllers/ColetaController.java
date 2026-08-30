@@ -1,7 +1,7 @@
 package br.fai.lds.backend.controllers;
 
 import br.fai.lds.backend.dto.ColetaDTO;
-import br.fai.lds.backend.services.SolicitacaoColetaService;
+import br.fai.lds.backend.ports_and_adpters.adpters.service.SolicitacaoColetaServiceAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ColetaController {
     
     @Autowired
-    private SolicitacaoColetaService coletaService;
+    private SolicitacaoColetaServiceAdapter coletaService;
     
     @GetMapping
     public ResponseEntity<List<ColetaDTO>> listarTodos() {
