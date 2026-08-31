@@ -50,7 +50,6 @@ export class SolicitarColeta {
     this.coletasService.criar(coleta as any).subscribe({
       next: (response) => {
         console.log('Coleta criada com sucesso:', response);
-        alert('Coleta agendada com sucesso!');
 
         this.formulario.reset({
           quantidade: 1,
@@ -60,7 +59,6 @@ export class SolicitarColeta {
       },
       error: (error) => {
         console.error('Erro ao agendar coleta:', error);
-        alert('Erro ao agendar coleta.');
       },
     });
   }
