@@ -63,6 +63,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if ("/api/usuarios".equals(path) && "POST".equalsIgnoreCase(method)) {
             return true;
         }
+        if ("/api/residuos".equals(path) && "GET".equalsIgnoreCase(method)) {
+            return true;
+        }
         return path.startsWith("/h2-console");
     }
 }
