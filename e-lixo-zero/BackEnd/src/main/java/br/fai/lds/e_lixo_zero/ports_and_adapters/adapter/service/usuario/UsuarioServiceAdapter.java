@@ -4,6 +4,7 @@ import br.fai.lds.e_lixo_zero.domain.UsuarioModel;
 import br.fai.lds.e_lixo_zero.ports_and_adapters.port.dao.usuario.UsuarioDao;
 import br.fai.lds.e_lixo_zero.ports_and_adapters.port.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public class UsuarioServiceAdapter implements UsuarioService {
 
     @Autowired
     private UsuarioDao usuarioDao;
+
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public int create(final UsuarioModel usuarioModel) {
@@ -33,6 +36,7 @@ public class UsuarioServiceAdapter implements UsuarioService {
         }
 
         setDefaults(usuarioModel);
+        usuarioModel.setSenha(passwordEncoder.encode(usuarioModel.getSenha()));
         return usuarioDao.add(usuarioModel);
     }
 

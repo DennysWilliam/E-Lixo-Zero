@@ -9,6 +9,7 @@ import br.fai.lds.e_lixo_zero.ports_and_adapters.port.service.usuario.UsuarioSer
 import br.fai.lds.e_lixo_zero.security.JwtTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -25,6 +26,8 @@ public class UsuarioController {
 
     @Autowired
     private JwtTokenService jwtTokenService;
+
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @GetMapping
     public ResponseEntity<List<UsuarioModel>> getAll() {
@@ -68,7 +71,7 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody final LoginRequestDto loginRequest) {
         final UsuarioModel usuario = usuarioService.findByEmail(loginRequest.getEmail());
-        if (usuario == null || !usuario.getSenha().equals(loginRequest.getSenha())) {
+        if (usuario == null || !passwordEncoder.matches(loginRequest.getSenha(), usuario.getSenha())) {
             throw new UnauthorizedException("E-mail ou senha inválidos");
         }
 
