@@ -13,10 +13,11 @@ public class PontoColetaModel {
     private String bairro;
     private String cidade;
     private String estado;
-    private String cep;
     private String telefone;
     private String horario;
     private List<String> residuos = new ArrayList<>();
+    private double latitude;
+    private double longitude;
     private boolean ativo;
 
     public int getId() {
@@ -102,20 +103,28 @@ public class PontoColetaModel {
         this.estado = estado;
     }
 
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(final String cep) {
-        this.cep = cep;
-    }
-
     public String getTelefone() {
-        return telefone;
+        return telefone != null ? telefone : "";
     }
 
     public void setTelefone(final String telefone) {
         this.telefone = telefone;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(final double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(final double longitude) {
+        this.longitude = longitude;
     }
 
     public String getHorario() {

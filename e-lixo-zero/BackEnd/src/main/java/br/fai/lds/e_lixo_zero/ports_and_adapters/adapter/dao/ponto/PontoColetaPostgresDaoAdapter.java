@@ -11,7 +11,6 @@ import org.springframework.util.StringUtils;
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.List;
 
 public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
@@ -24,7 +23,7 @@ public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
 
     @Override
     public int add(final PontoColetaModel entity) {
-        final String sql = "INSERT INTO pontos_coleta (nome, logradouro, numero, bairro, cidade, estado, cep, telefone, horario_funcionamento, tipos_residuos_aceitos, ativo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        final String sql = "INSERT INTO pontos_coleta (nome, logradouro, numero, bairro, cidade, estado, latitude, longitude, horario_funcionamento, ativo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         final KeyHolder keyHolder = new GeneratedKeyHolder();
 
         prepareDefaults(entity);
@@ -37,11 +36,10 @@ public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
             ps.setString(4, entity.getBairro());
             ps.setString(5, entity.getCidade());
             ps.setString(6, entity.getEstado());
-            ps.setString(7, entity.getCep());
-            ps.setString(8, entity.getTelefone());
+            ps.setDouble(7, entity.getLatitude());
+            ps.setDouble(8, entity.getLongitude());
             ps.setString(9, entity.getHorario());
-            ps.setString(10, String.join(",", entity.getResiduos()));
-            ps.setBoolean(11, entity.isAtivo());
+            ps.setBoolean(10, entity.isAtivo());
             return ps;
         }, keyHolder);
 
@@ -67,7 +65,7 @@ public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
 
     @Override
     public void updateInformation(final int id, final PontoColetaModel entity) {
-        final String sql = "UPDATE pontos_coleta SET nome = ?, logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, cep = ?, telefone = ?, horario_funcionamento = ?, tipos_residuos_aceitos = ?, ativo = ? WHERE id_ponto = ?";
+        final String sql = "UPDATE pontos_coleta SET nome = ?, logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, latitude = ?, longitude = ?, horario_funcionamento = ?, ativo = ? WHERE id_ponto = ?";
         prepareDefaults(entity);
         jdbcTemplate.update(sql,
                 entity.getNome(),
@@ -76,10 +74,9 @@ public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
                 entity.getBairro(),
                 entity.getCidade(),
                 entity.getEstado(),
-                entity.getCep(),
-                entity.getTelefone(),
+                entity.getLatitude(),
+                entity.getLongitude(),
                 entity.getHorario(),
-                String.join(",", entity.getResiduos()),
                 entity.isAtivo(),
                 id);
     }
@@ -104,11 +101,8 @@ public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
         if (!StringUtils.hasText(entity.getEstado())) {
             entity.setEstado("MG");
         }
-        if (!StringUtils.hasText(entity.getCep())) {
-            entity.setCep("");
-        }
-        if (!StringUtils.hasText(entity.getTelefone())) {
-            entity.setTelefone("");
+        if (!StringUtils.hasText(entity.getHorario())) {
+            entity.setHorario("");
         }
         if (entity.getResiduos() == null) {
             entity.setResiduos(List.of());
@@ -125,18 +119,12 @@ public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
             ponto.setBairro(rs.getString("bairro"));
             ponto.setCidade(rs.getString("cidade"));
             ponto.setEstado(rs.getString("estado"));
-            ponto.setCep(rs.getString("cep"));
-            ponto.setTelefone(rs.getString("telefone"));
+            ponto.setLatitude(rs.getDouble("latitude"));
+            ponto.setLongitude(rs.getDouble("longitude"));
+            ponto.setTelefone("");
             ponto.setHorario(rs.getString("horario_funcionamento"));
+            ponto.setResiduos(List.of());
             ponto.setAtivo(rs.getBoolean("ativo"));
-
-            final String tipos = rs.getString("tipos_residuos_aceitos");
-            if (tipos != null && !tipos.isBlank()) {
-                ponto.setResiduos(Arrays.asList(tipos.split(",")));
-            } else {
-                ponto.setResiduos(List.of());
-            }
-
             return ponto;
         };
     }
