@@ -12,8 +12,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>br.fai.e-lixo-zero</groupId>
-    <artifactId>e-lixo-zero</artifactId>
+    <groupId>br.fai.e_lixo_zero</groupId>
+    <artifactId>e_lixo_zero</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>e-lixo-zero</name>
