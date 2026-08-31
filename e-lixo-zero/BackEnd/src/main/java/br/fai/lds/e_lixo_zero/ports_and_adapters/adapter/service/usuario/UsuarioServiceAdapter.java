@@ -31,7 +31,22 @@ public class UsuarioServiceAdapter implements UsuarioService {
         if (findByEmail(usuarioModel.getEmail()) != null) {
             return 0;
         }
+
+        setDefaults(usuarioModel);
         return usuarioDao.add(usuarioModel);
+    }
+
+    private void setDefaults(final UsuarioModel usuarioModel) {
+        if (isInvalidString(usuarioModel.getCidade())) {
+            usuarioModel.setCidade("Santa Rita do Sapucaí");
+        }
+        if (isInvalidString(usuarioModel.getEstado())) {
+            usuarioModel.setEstado("MG");
+        }
+        if (isInvalidString(usuarioModel.getTipoUsuario())) {
+            usuarioModel.setTipoUsuario("CIDADAO");
+        }
+        usuarioModel.setAtivo(true);
     }
 
     @Override
