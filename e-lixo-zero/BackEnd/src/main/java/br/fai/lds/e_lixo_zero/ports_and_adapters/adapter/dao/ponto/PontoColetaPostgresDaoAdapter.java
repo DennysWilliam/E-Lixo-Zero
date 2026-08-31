@@ -69,7 +69,8 @@ public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
             return readAll();
         }
         final String termo = "%" + cidade.trim().toLowerCase() + "%";
-        return jdbcTemplate.query("SELECT * FROM pontos_coleta WHERE ativo = true AND LOWER(cidade) LIKE ?", getRowMapper(), termo);
+        final String sql = "SELECT * FROM pontos_coleta WHERE ativo = true AND (LOWER(nome) LIKE ? OR LOWER(cidade) LIKE ? OR LOWER(logradouro) LIKE ? OR LOWER(bairro) LIKE ?)";
+        return jdbcTemplate.query(sql, getRowMapper(), termo, termo, termo, termo);
     }
 
     @Override
