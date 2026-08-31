@@ -23,7 +23,7 @@ public class SolicitacaoColetaPostgresDaoAdapter implements SolicitacaoColetaDao
 
     @Override
     public int add(final SolicitacaoColetaModel entity) {
-        final String sql = "INSERT INTO solicitacoes_coleta (id_usuario, id_residuo, logradouro, numero, bairro, cidade, estado, quantidade_estimada, data_desejada, status, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        final String sql = "INSERT INTO solicitacoes_coleta (id_usuario, id_residuo, logradouro, numero, bairro, cidade, estado, quantidade_estimada, data_desejada, status, observacoes, data_atualizacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp)";
         final KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
@@ -69,7 +69,7 @@ public class SolicitacaoColetaPostgresDaoAdapter implements SolicitacaoColetaDao
 
     @Override
     public void updateInformation(final int id, final SolicitacaoColetaModel entity) {
-        final String sql = "UPDATE solicitacoes_coleta SET id_usuario = ?, id_residuo = ?, logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, quantidade_estimada = ?, data_desejada = ?, status = ?, observacoes = ? WHERE id_solicitacao = ?";
+        final String sql = "UPDATE solicitacoes_coleta SET id_usuario = ?, id_residuo = ?, logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, quantidade_estimada = ?, data_desejada = ?, status = ?, observacoes = ?, data_atualizacao = current_timestamp WHERE id_solicitacao = ?";
         jdbcTemplate.update(sql,
                 entity.getUsuarioId(),
                 entity.getTipoResiduoId(),
