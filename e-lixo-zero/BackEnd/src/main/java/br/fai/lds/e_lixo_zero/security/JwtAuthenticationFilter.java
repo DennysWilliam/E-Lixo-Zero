@@ -23,6 +23,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String requestPath = request.getRequestURI();
         final String method = request.getMethod();
 
+        setCorsHeaders(response);
+
+        if ("OPTIONS".equalsIgnoreCase(method)) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+
         if (isPublicPath(requestPath, method)) {
             filterChain.doFilter(request, response);
             return;
@@ -41,6 +48,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private void setCorsHeaders(final HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     }
 
     private boolean isPublicPath(final String path, final String method) {
