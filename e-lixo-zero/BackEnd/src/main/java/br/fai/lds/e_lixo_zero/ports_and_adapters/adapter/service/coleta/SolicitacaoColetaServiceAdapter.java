@@ -19,17 +19,26 @@ public class SolicitacaoColetaServiceAdapter implements SolicitacaoColetaService
         if (entity == null || entity.getUsuarioId() <= 0 || entity.getTipoResiduoId() <= 0) {
             return 0;
         }
-        if (isInvalidString(entity.getLogradouro()) || isInvalidString(entity.getDataDesejada())) {
+        if (isInvalidString(entity.getLogradouro()) || isInvalidString(entity.getBairro()) || isInvalidString(entity.getDataDesejada())) {
             return 0;
         }
-        if (isInvalidString(entity.getEstado())) {
-            entity.setEstado("MG");
+        if (isInvalidString(entity.getNumero())) {
+            entity.setNumero("");
         }
         if (isInvalidString(entity.getCidade())) {
             entity.setCidade("Santa Rita do Sapucaí");
         }
+        if (isInvalidString(entity.getEstado())) {
+            entity.setEstado("MG");
+        }
+        if (isInvalidString(entity.getQuantidadeEstimada())) {
+            entity.setQuantidadeEstimada("");
+        }
         if (isInvalidString(entity.getStatus())) {
             entity.setStatus("PENDENTE");
+        }
+        if (entity.getObservacoes() == null) {
+            entity.setObservacoes("");
         }
         return solicitacaoColetaDao.add(entity);
     }
