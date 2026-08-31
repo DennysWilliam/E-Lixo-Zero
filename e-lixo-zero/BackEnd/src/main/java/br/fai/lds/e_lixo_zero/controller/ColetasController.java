@@ -1,5 +1,6 @@
 package br.fai.lds.e_lixo_zero.controller;
 
+import br.fai.lds.e_lixo_zero.domain.NotificacaoModel;
 import br.fai.lds.e_lixo_zero.domain.SolicitacaoColetaModel;
 import br.fai.lds.e_lixo_zero.domain.TipoResiduoModel;
 import br.fai.lds.e_lixo_zero.domain.UsuarioModel;
@@ -9,6 +10,7 @@ import br.fai.lds.e_lixo_zero.exceptions.BadRequestException;
 import br.fai.lds.e_lixo_zero.exceptions.ResourceNotFoundException;
 import br.fai.lds.e_lixo_zero.exceptions.UnauthorizedException;
 import br.fai.lds.e_lixo_zero.ports_and_adapters.port.service.coleta.SolicitacaoColetaService;
+import br.fai.lds.e_lixo_zero.ports_and_adapters.port.service.notificacao.NotificacaoService;
 import br.fai.lds.e_lixo_zero.ports_and_adapters.port.service.residuo.TipoResiduoService;
 import br.fai.lds.e_lixo_zero.ports_and_adapters.port.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class ColetasController {
 
     @Autowired
     private TipoResiduoService tipoResiduoService;
+
+    @Autowired
+    private NotificacaoService notificacaoService;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -86,6 +91,14 @@ public class ColetasController {
         if (response == null) {
             throw new BadRequestException("Erro ao retornar coleta");
         }
+
+        final NotificacaoModel notificacao = new NotificacaoModel();
+        notificacao.setUsuarioId(usuario.getId());
+        notificacao.setTitulo("Coleta confirmada");
+        notificacao.setMensagem(String.format("Sua coleta de %s foi agendada para %s no período da %s.", residuo.getNome(), request.getData(), request.getPeriodo().toLowerCase()));
+        notificacao.setTipoNotificacao("INFORMATIVA");
+        notificacao.setLida(false);
+        notificacaoService.create(notificacao);
 
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
