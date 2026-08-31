@@ -23,27 +23,22 @@ public class SolicitacaoColetaPostgresDaoAdapter implements SolicitacaoColetaDao
 
     @Override
     public int add(final SolicitacaoColetaModel entity) {
-        final String sql = "INSERT INTO solicitacoes_coleta (id_usuario, id_residuo, id_coletor, logradouro, numero, bairro, cidade, estado, quantidade_estimada, data_desejada, status, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        final String sql = "INSERT INTO solicitacoes_coleta (id_usuario, id_residuo, logradouro, numero, bairro, cidade, estado, quantidade_estimada, data_desejada, status, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         final KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
             final PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, entity.getUsuarioId());
             ps.setInt(2, entity.getTipoResiduoId());
-            if (entity.getColetorId() > 0) {
-                ps.setInt(3, entity.getColetorId());
-            } else {
-                ps.setObject(3, null);
-            }
-            ps.setString(4, entity.getLogradouro());
-            ps.setString(5, entity.getNumero());
-            ps.setString(6, entity.getBairro());
-            ps.setString(7, entity.getCidade());
-            ps.setString(8, entity.getEstado());
-            ps.setString(9, entity.getQuantidadeEstimada());
-            ps.setDate(10, Date.valueOf(entity.getDataDesejada()));
-            ps.setString(11, entity.getStatus());
-            ps.setString(12, entity.getObservacoes());
+            ps.setString(3, entity.getLogradouro());
+            ps.setString(4, entity.getNumero());
+            ps.setString(5, entity.getBairro());
+            ps.setString(6, entity.getCidade());
+            ps.setString(7, entity.getEstado());
+            ps.setString(8, entity.getQuantidadeEstimada());
+            ps.setDate(9, Date.valueOf(entity.getDataDesejada()));
+            ps.setString(10, entity.getStatus());
+            ps.setString(11, entity.getObservacoes());
             return ps;
         }, keyHolder);
 
@@ -74,11 +69,10 @@ public class SolicitacaoColetaPostgresDaoAdapter implements SolicitacaoColetaDao
 
     @Override
     public void updateInformation(final int id, final SolicitacaoColetaModel entity) {
-        final String sql = "UPDATE solicitacoes_coleta SET id_usuario = ?, id_residuo = ?, id_coletor = ?, logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, quantidade_estimada = ?, data_desejada = ?, status = ?, observacoes = ? WHERE id_solicitacao = ?";
+        final String sql = "UPDATE solicitacoes_coleta SET id_usuario = ?, id_residuo = ?, logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, quantidade_estimada = ?, data_desejada = ?, status = ?, observacoes = ? WHERE id_solicitacao = ?";
         jdbcTemplate.update(sql,
                 entity.getUsuarioId(),
                 entity.getTipoResiduoId(),
-                entity.getColetorId() > 0 ? entity.getColetorId() : null,
                 entity.getLogradouro(),
                 entity.getNumero(),
                 entity.getBairro(),
@@ -109,7 +103,8 @@ public class SolicitacaoColetaPostgresDaoAdapter implements SolicitacaoColetaDao
             coleta.setCidade(rs.getString("cidade"));
             coleta.setEstado(rs.getString("estado"));
             coleta.setQuantidadeEstimada(rs.getString("quantidade_estimada"));
-            coleta.setDataDesejada(rs.getDate("data_desejada").toLocalDate().toString());
+            final Date data = rs.getDate("data_desejada");
+            coleta.setDataDesejada(data != null ? data.toLocalDate().toString() : null);
             coleta.setStatus(rs.getString("status"));
             coleta.setObservacoes(rs.getString("observacoes"));
             return coleta;
