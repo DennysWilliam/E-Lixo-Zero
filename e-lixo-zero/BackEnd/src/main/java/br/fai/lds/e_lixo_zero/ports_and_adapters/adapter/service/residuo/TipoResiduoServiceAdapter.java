@@ -57,6 +57,14 @@ public class TipoResiduoServiceAdapter implements TipoResiduoService {
         return tipoResiduoDao.readAll();
     }
 
+    @Override
+    public TipoResiduoModel findByNome(final String nome) {
+        if (nome == null || nome.isBlank()) {
+            return null;
+        }
+        return tipoResiduoDao.readByNome(nome.trim());
+    }
+
     private boolean isInvalidString(final String value) {
         return value == null || value.isBlank();
     }

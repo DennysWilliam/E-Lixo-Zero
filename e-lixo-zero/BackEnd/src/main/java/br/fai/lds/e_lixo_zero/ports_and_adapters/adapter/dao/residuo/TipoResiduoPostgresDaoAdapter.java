@@ -55,6 +55,15 @@ public class TipoResiduoPostgresDaoAdapter implements TipoResiduoDao {
     }
 
     @Override
+    public TipoResiduoModel readByNome(final String nome) {
+        if (nome == null || nome.isBlank()) {
+            return null;
+        }
+        final List<TipoResiduoModel> result = jdbcTemplate.query("SELECT * FROM tipos_residuos WHERE LOWER(nome) = LOWER(?)", getRowMapper(), nome.trim());
+        return result.isEmpty() ? null : result.get(0);
+    }
+
+    @Override
     public void updateInformation(final int id, final TipoResiduoModel entity) {
         final String sql = "UPDATE tipos_residuos SET nome = ?, categoria = ?, descricao = ?, ativo = ? WHERE id_residuo = ?";
         jdbcTemplate.update(sql, entity.getNome(), entity.getCategoria(), entity.getDescricao(), entity.isAtivo(), id);

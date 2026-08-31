@@ -47,6 +47,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
+        request.setAttribute("email", jwtTokenService.getSubjectFromToken(token));
         filterChain.doFilter(request, response);
     }
 
