@@ -20,6 +20,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +97,8 @@ public class ColetasController {
         final NotificacaoModel notificacao = new NotificacaoModel();
         notificacao.setUsuarioId(usuario.getId());
         notificacao.setTitulo("Coleta confirmada");
-        notificacao.setMensagem(String.format("Sua coleta de %s foi agendada para %s no período da %s.", residuo.getNome(), request.getData(), request.getPeriodo().toLowerCase()));
+        final String dataFormatada = formatarData(request.getData());
+        notificacao.setMensagem(String.format("Sua coleta de %s foi agendada para %s no período da %s.", residuo.getNome(), dataFormatada, request.getPeriodo().toLowerCase()));
         notificacao.setTipoNotificacao("INFORMATIVA");
         notificacao.setLida(false);
         notificacaoService.create(notificacao);
@@ -169,6 +172,18 @@ public class ColetasController {
             return Integer.parseInt(quantidade.trim());
         } catch (final NumberFormatException e) {
             return 0;
+        }
+    }
+
+    private String formatarData(final String data) {
+        if (data == null || data.isBlank()) {
+            return "";
+        }
+        try {
+            final LocalDate date = LocalDate.parse(data);
+            return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } catch (final Exception e) {
+            return data;
         }
     }
 }
