@@ -64,6 +64,15 @@ public class PontoColetaPostgresDaoAdapter implements PontoColetaDao {
     }
 
     @Override
+    public List<PontoColetaModel> readByCidade(final String cidade) {
+        if (cidade == null || cidade.isBlank()) {
+            return readAll();
+        }
+        final String termo = "%" + cidade.trim().toLowerCase() + "%";
+        return jdbcTemplate.query("SELECT * FROM pontos_coleta WHERE ativo = true AND LOWER(cidade) LIKE ?", getRowMapper(), termo);
+    }
+
+    @Override
     public void updateInformation(final int id, final PontoColetaModel entity) {
         final String sql = "UPDATE pontos_coleta SET nome = ?, logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, latitude = ?, longitude = ?, horario_funcionamento = ?, ativo = ? WHERE id_ponto = ?";
         prepareDefaults(entity);

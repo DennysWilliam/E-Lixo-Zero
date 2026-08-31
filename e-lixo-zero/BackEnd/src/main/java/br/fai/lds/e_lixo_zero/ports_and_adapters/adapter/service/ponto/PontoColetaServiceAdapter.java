@@ -66,6 +66,14 @@ public class PontoColetaServiceAdapter implements PontoColetaService {
         return pontoColetaDao.readAll();
     }
 
+    @Override
+    public List<PontoColetaModel> findByCidade(final String cidade) {
+        if (isInvalidString(cidade)) {
+            return pontoColetaDao.readAll();
+        }
+        return pontoColetaDao.readByCidade(cidade);
+    }
+
     private boolean isInvalidString(final String value) {
         return value == null || value.isBlank();
     }

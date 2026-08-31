@@ -4,8 +4,8 @@
 </div>
 
 <section class="search-box">
-  <input type="text" placeholder="Buscar ponto de coleta..." />
-  <button>Buscar</button>
+  <input type="text" [(ngModel)]="termo" (keyup.enter)="buscar()" placeholder="Buscar ponto de coleta por cidade..." />
+  <button (click)="buscar()">Buscar</button>
 </section>
 <section class="grid-2">
   <article class="card ponto-card"   *ngFor="let ponto of (pontos$ | async) ?? []">

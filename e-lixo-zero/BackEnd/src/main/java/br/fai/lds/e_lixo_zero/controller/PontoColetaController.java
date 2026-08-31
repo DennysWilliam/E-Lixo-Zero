@@ -24,6 +24,11 @@ public class PontoColetaController {
         return ResponseEntity.ok(pontoColetaService.findALl());
     }
 
+    @GetMapping("/cidade/{cidade}")
+    public ResponseEntity<List<PontoColetaModel>> getByCidade(@PathVariable final String cidade) {
+        return ResponseEntity.ok(pontoColetaService.findByCidade(cidade));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PontoColetaModel> getById(@PathVariable final int id) {
         final PontoColetaModel ponto = pontoColetaService.findById(id);
