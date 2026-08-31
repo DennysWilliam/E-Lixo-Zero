@@ -27,7 +27,7 @@ public class SolicitacaoColetaPostgresDaoAdapter implements SolicitacaoColetaDao
         final KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
-            final PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            final PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id_solicitacao"});
             ps.setInt(1, entity.getUsuarioId());
             ps.setInt(2, entity.getTipoResiduoId());
             ps.setString(3, entity.getLogradouro());
@@ -42,7 +42,7 @@ public class SolicitacaoColetaPostgresDaoAdapter implements SolicitacaoColetaDao
             return ps;
         }, keyHolder);
 
-        final Number key = keyHolder.getKey();
+        final Number key = keyHolder.getKeyAs(Number.class);
         return key != null ? key.intValue() : 0;
     }
 
