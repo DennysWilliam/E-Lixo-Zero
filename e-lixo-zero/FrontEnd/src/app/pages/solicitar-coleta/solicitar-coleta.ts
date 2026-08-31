@@ -23,6 +23,9 @@ export class SolicitarColeta {
     initialValue: [] as Residuo[],
   });
 
+  mensagem = '';
+  erro = '';
+
   formulario = this.fb.group({
     residuo: ['', Validators.required],
     quantidade: [1, Validators.required],
@@ -40,16 +43,18 @@ export class SolicitarColeta {
       return;
     }
 
+    this.mensagem = '';
+    this.erro = '';
+
     const coleta = {
       ...this.formulario.value,
       status: 'Agendada',
     };
 
-    console.log('Dados da coleta:', coleta);
-
     this.coletasService.criar(coleta as any).subscribe({
       next: (response) => {
         console.log('Coleta criada com sucesso:', response);
+        this.mensagem = 'Coleta agendada com sucesso!';
 
         this.formulario.reset({
           quantidade: 1,
@@ -59,6 +64,7 @@ export class SolicitarColeta {
       },
       error: (error) => {
         console.error('Erro ao agendar coleta:', error);
+        this.erro = 'Erro ao agendar coleta. Tente novamente.';
       },
     });
   }

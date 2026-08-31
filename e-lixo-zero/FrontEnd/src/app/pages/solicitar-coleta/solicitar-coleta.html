@@ -10,6 +10,14 @@
     [formGroup]="formulario"
     (ngSubmit)="salvar()">
 
+    <div class="mensagem sucesso" *ngIf="mensagem">
+      {{ mensagem }}
+    </div>
+
+    <div class="mensagem erro" *ngIf="erro">
+      {{ erro }}
+    </div>
+
     <div class="campo">
       <label for="residuo">Tipo de resíduo</label>
 
