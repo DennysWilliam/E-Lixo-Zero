@@ -11,20 +11,14 @@ import { Usuario, UsuarioCompat } from '../models/usuario.model';
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private api = 'http://localhost:3000/usuarios';
+  private api = 'http://localhost:8087/api/usuarios';
   private chave = 'usuarioLogado';
   private chaveToken = 'token';
 
   login(email: string, senha: string) {
-    const url = `${this.api}?email=${encodeURIComponent(email)}`;
-    return this.http.get<Usuario[]>(url).pipe(
-      map((usuarios) => {
-        const usuario = usuarios.find(u => u.email === email && u.senha === senha);
-        if (!usuario) {
-          return false;
-        }
-
-        console.log('Usuário mock encontrado:', usuario);
+    return this.http.post<any>(`${this.api}/login`, { email, senha }).pipe(
+      map((usuario) => {
+        console.log('Usuário recebido do backend:', usuario);
 
         const usuarioCompat: UsuarioCompat = {
           id: String(usuario.id),
@@ -38,7 +32,10 @@ export class AuthService {
         };
 
         localStorage.setItem(this.chave, JSON.stringify(usuarioCompat));
-        localStorage.setItem(this.chaveToken, 'mock-token');
+
+        if (usuario.token) {
+          localStorage.setItem(this.chaveToken, usuario.token);
+        }
 
         console.log('Usuário salvo no localStorage:', usuarioCompat);
         return true;
