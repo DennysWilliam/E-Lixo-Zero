@@ -1,0 +1,7 @@
+Apontamentos Incremento III
+
+- Rever os casos de uso se realmente são relacionamentos de include ou extends - Visualizar ao meu ver é <extends> e não <include>
+- Fazer a generalização dos usuários no diagrama de caso de uso
+- Pensar em uma forma de gerenciar os pontos de coleta
+- Documentação rever a formatação e espaços em branco
+- Adicionar a visão de interação do usuário
