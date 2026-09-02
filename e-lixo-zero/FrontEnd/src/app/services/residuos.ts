@@ -11,7 +11,7 @@ import { Residuo } from '../models/residuo.model';
 export class ResiduosService {
   private http = inject(HttpClient);
 
-  private api = 'http://localhost:8087/api/residuos';
+  private api = 'http://localhost:3000/residuos';
 
   listar(): Observable<Residuo[]> {
     return this.http.get<Residuo[]>(this.api);

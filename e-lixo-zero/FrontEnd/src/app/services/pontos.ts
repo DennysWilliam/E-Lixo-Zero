@@ -10,7 +10,7 @@ import { PontoColeta } from '../models/ponto-coleta.model';
 export class PontosService {
   private http = inject(HttpClient);
 
-  private api = 'http://localhost:8087/api/pontos-coleta';
+  private api = 'http://localhost:3000/pontos-coleta';
 
   listar(): Observable<PontoColeta[]> {
     return this.http.get<PontoColeta[]>(this.api);

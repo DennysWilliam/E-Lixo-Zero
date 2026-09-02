@@ -11,7 +11,7 @@ import { Coleta } from '../models/coleta.model';
 export class ColetasService {
   private http = inject(HttpClient);
 
-  private api = 'http://localhost:8087/api/coletas';
+  private api = 'http://localhost:3000/coletas';
 
   listar(): Observable<Coleta[]> {
     return this.http.get<Coleta[]>(this.api);

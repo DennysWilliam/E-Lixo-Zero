@@ -9,7 +9,7 @@ import { Notificacao } from '../models/notificacao.model';
 })
 export class NotificacoesService {
   private http = inject(HttpClient);
-  private api = 'http://localhost:8087/api/notificacoes';
+  private api = 'http://localhost:3000/notificacoes';
 
   listar(): Observable<Notificacao[]> {
     return this.http.get<Notificacao[]>(this.api);
